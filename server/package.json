@@ -1,0 +1,23 @@
+{
+  "name": "dev03",
+  "version": "1.0.0",
+  "description": "대덕 소프트웨어 마이스터 고등학교 3 개발팀",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ParkCheonU/Dev03.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ParkCheonU/Dev03/issues"
+  },
+  "homepage": "https://github.com/ParkCheonU/Dev03#readme",
+  "dependencies": {
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.4"
+  }
+}
