@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     like: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      defaultValue: null,
+      defaultValue: 0,
     },
   }, {
     timestamps: true,
