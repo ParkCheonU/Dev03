@@ -2,7 +2,8 @@ const express = require("express");
 const sequelize = require('./models/index').sequelize;
 const cors = require("cors");
 const morgan = require("morgan");
-const router = require("./router");
+const router = require("./routes");
+const bodyParser = require('body-parser')
 const app = express();
 const port = 8080;
 
@@ -18,8 +19,8 @@ app.get("/", (req, res) => {
     res.status(302).json({ message: "Hello World" });
 })
 
-app.use("api", apiRouter);
-
+app.use("/api", router);
+ 
 app.use((err, req, res, next) => {
     res.status(404).json({
         message: err.message,

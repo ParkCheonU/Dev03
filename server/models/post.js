@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('post', {
     id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER(11),
       autoIncrement: true,
       primaryKey: true
     },
@@ -12,12 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     text: {
       type: DataTypes.STRING(45),
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
     },
     img: {
       type: DataTypes.STRING(45),
-      allowNull: false,
+      allowNull: true,
       defaultValue: null,
     },
     like: {

@@ -1,9 +1,12 @@
-const { post } = require('../models');
+const post = require('../models').Post;
 
 const writing = async (req,res) => {
   const { nickname, text } = req.body;
+  let file;
   try {
-    if(req.file !== undefined) file = req.file.originalname;
+    if(req.file !== undefined) {
+      file = req.file.originalname 
+    };
     await post.create({
       nickname: nickname,
       text: text,
@@ -12,25 +15,26 @@ const writing = async (req,res) => {
     res.status(200).json({ message: "success" });
   }
   catch(err) {
-    res.status(404).json({ message: err })
+    res.status(404).json({ message: err.message })
   }
 }
 
-const upload = (req,res) => {
+const upload = async (req,res) => {
   try {
     const numberOfRequest = req.body.numberOfRequest;
-    const post = await post.findAll({
+    const Post = await post.findAll({
       offset: numberOfRequest*10-10,
-      limit: numberOfRequest*10-1
+      limit: 10
     });
-    res.status(200).json({ message: "success", post});
+    console.log(Post);
+    res.status(200).json({ message: "success", Post});
   }
   catch (err) {
-    res.status(404).json({ message: err });
+    res.status(404).json({ message: err.message });
   }
 }
 
-const like = (req,res) => {
+const like = async (req,res) => {
   const id = req.body.id;
   try {
     post.update({
