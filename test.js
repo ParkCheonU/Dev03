@@ -1,26 +1,4 @@
-var list = [{
-    id: 1,
-    nick: "IDK",
-    image: "icon (6).png",
-    text: "ㅁㄴ이라ㅓㅁㄴ이ㅏ럼;나ㅣㅇ러;미나얼;ㅣㅏㅁㄴ얼;ㅣ마넝ㄹ;ㅇㅁㄴ이라ㅓㅁㄴ이ㅏ럼;나ㅣㅇ러;미나얼;ㅣㅏㅁㄴ얼;ㅣ마넝ㄹ;ㅇㅁㄴ이라ㅓㅁㄴ이ㅏ럼;나ㅣㅇ러;미나얼;ㅣㅏㅁㄴ얼;ㅣ마넝ㄹ;ㅇㅁㄴ이라ㅓㅁㄴ이ㅏ럼;나ㅣㅇ러;미나얼;ㅣㅏㅁㄴ얼;ㅣ마넝ㄹ;ㅇㅁㄴ이라ㅓㅁㄴ이ㅏ럼;나ㅣㅇ러;미나얼;ㅣㅏㅁㄴ얼;ㅣ마넝ㄹ;ㅇ",
-    number: 5
-  },
-  {
-    id: 2,
-    nick: "siranai",
-    image: "icon (6).png",
-    text: "bokumo nande siranai sikara",
-    number: 50
-  },
-  {
-    id: 3,
-    nick: "asdf",
-    image: "icon (6).png",
-    text: "asdf;lkjzxcv.,mnqwerpoughtybn",
-    number: 0
-  },
-
-]
+var list = [];
 
 var idNum = 0;
 var getNum = 0;
@@ -30,71 +8,127 @@ var url = "";
 function getData() {
   var array = [];
   getNum = getNum + 1;
-  axios.post(`http://localhost:8000/api/num`, {
-      num: getNum
+  axios.post(`http://localhost:8080/api/upload`, {
+      numberOfRequest: getNum
     })
     .then(function(res) {
-      console.log(res.data.array);
-      response.data.array.map((arr) => array.push(arr));
+      console.log(res.data.Post);
+      console.log(res.data.Post.length);
+      res.data.Post.map((arr) => list.push(arr));
+      for (var i = 0; i < res.data.Post.length; i++) {
+        var nick = res.data.Post[i].nickname;
+
+        var newDetails = document.createElement("details");
+        newDetails.setAttribute("class", "list-item");
+
+        var newSummary = document.createElement("summary");
+        newSummary.setAttribute("class", "list-summary");
+        newSummary.innerHTML = res.data.Post[i].nickname;
+
+        var newContents = document.createElement("div");
+        newContents.setAttribute("class", "list-contents");
+
+        console.log(res.data.Post[i].img);
+
+        var img = res.data.Post[i].img;
+
+        console.log(img);
+
+        var newImg = document.createElement("img");
+        newImg.setAttribute("src", "server/public/img/WIN_20200818_12_10_48_Pro.jpg");
+        newImg.setAttribute("class", "list-img");
+
+
+        var newText = document.createElement("textarea");
+        newText.setAttribute("class", "list-text");
+        newText.setAttribute("readonly", "true");
+        newText.innerHTML = res.data.Post[i].text;
+
+        newContents.appendChild(newImg);
+        newContents.appendChild(newText);
+
+        var newItem = document.createElement("div");
+        newItem.setAttribute("class", "item");
+
+        var newHeart = document.createElement("div");
+        newHeart.setAttribute("class", "heart shape");
+        newHeart.setAttribute("id", "heart" + i);
+        newHeart.setAttribute("onclick", "heart(" + i + ")");
+
+        var newNumber = document.createElement("div");
+        newNumber.setAttribute("class", "number");
+        newNumber.innerHTML = res.data.Post[i].like;
+
+        newItem.appendChild(newHeart);
+        newItem.appendChild(newNumber);
+
+
+        newDetails.appendChild(newSummary);
+        newDetails.appendChild(newContents);
+        newDetails.appendChild(newItem);
+
+        document.getElementById('list').appendChild(newDetails);
+      }
     })
     .catch(function(error) {
       console.log(error);
     })
-
-  list.push(array)
+    console.log(list);
+    console.log(list[1]);
 }
 
-function get() {
-  for (var i = 0; i < list.length; i++) {
-    var nick = list[i].nick;
-
-    var newDetails = document.createElement("details");
-    newDetails.setAttribute("class", "list-item");
-
-    var newSummary = document.createElement("summary");
-    newSummary.setAttribute("class", "list-summary");
-    newSummary.innerHTML = list[i].nick;
-
-    var newContents = document.createElement("div");
-    newContents.setAttribute("class", "list-contents");
-
-    var newImg = document.createElement("img");
-    newImg.setAttribute("src", list[i].image);
-    newImg.setAttribute("class", "list-img");
-
-
-    var newText = document.createElement("textarea");
-    newText.setAttribute("class", "list-text");
-    newText.setAttribute("readonly", "true");
-    newText.innerHTML = list[i].text;
-
-    newContents.appendChild(newImg);
-    newContents.appendChild(newText);
-
-    var newItem = document.createElement("div");
-    newItem.setAttribute("class", "item");
-
-    var newHeart = document.createElement("div");
-    newHeart.setAttribute("class", "heart shape");
-    newHeart.setAttribute("id", "heart" + i);
-    newHeart.setAttribute("onclick", "heart(" + i + ")");
-
-    var newNumber = document.createElement("div");
-    newNumber.setAttribute("class", "number");
-    newNumber.innerHTML = list[i].number;
-
-    newItem.appendChild(newHeart);
-    newItem.appendChild(newNumber);
-
-
-    newDetails.appendChild(newSummary);
-    newDetails.appendChild(newContents);
-    newDetails.appendChild(newItem);
-
-    document.getElementById('list').appendChild(newDetails);
-  }
-  idNum = list.length;
-}
+// function get() {
+//   // console.log(list[1);
+//   for (var i = 0; i < list.length; i++) {
+//     var nick = list[i].nick;
+//
+//     var newDetails = document.createElement("details");
+//     newDetails.setAttribute("class", "list-item");
+//
+//     var newSummary = document.createElement("summary");
+//     newSummary.setAttribute("class", "list-summary");
+//     newSummary.innerHTML = list[i].nick;
+//
+//     var newContents = document.createElement("div");
+//     newContents.setAttribute("class", "list-contents");
+//
+//     var newImg = document.createElement("img");
+//     newImg.setAttribute("src", list[i].image);
+//     newImg.setAttribute("class", "list-img");
+//
+//
+//     var newText = document.createElement("textarea");
+//     newText.setAttribute("class", "list-text");
+//     newText.setAttribute("readonly", "true");
+//     newText.innerHTML = list[i].text;
+//
+//     newContents.appendChild(newImg);
+//     newContents.appendChild(newText);
+//
+//     var newItem = document.createElement("div");
+//     newItem.setAttribute("class", "item");
+//
+//     var newHeart = document.createElement("div");
+//     newHeart.setAttribute("class", "heart shape");
+//     newHeart.setAttribute("id", "heart" + i);
+//     newHeart.setAttribute("onclick", "heart(" + i + ")");
+//
+//     var newNumber = document.createElement("div");
+//     newNumber.setAttribute("class", "number");
+//     newNumber.innerHTML = list[i].number;
+//
+//     newItem.appendChild(newHeart);
+//     newItem.appendChild(newNumber);
+//
+//
+//     newDetails.appendChild(newSummary);
+//     newDetails.appendChild(newContents);
+//     newDetails.appendChild(newItem);
+//
+//     document.getElementById('list').appendChild(newDetails);
+//   }
+//   idNum = list.length;
+// }
 
 function addList() {
 
@@ -109,17 +143,18 @@ function addList() {
   fd.append("img", url);
 
 
-  var request = new XMLHttpRequest();
-  request.open("POST", `http://10.156.146.142:8080/api/writing`);
-  request.send(fd);
 
-  // axios.post(`http://10.156.146.142:8080/api/writing`,fd)
-  // .then(res => {
-  //   console.log(res);
-  // })
-  // .catch(err => {
-  //   console.log(err);
-  // })
+  // var request = new XMLHttpRequest();
+  // request.open("POST", `http://localhost:8080/api/writing`);
+  // request.send(fd);
+
+  axios.post(`http://localhost:8080/api/writing`,fd)
+  .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.log(err);
+  })
 
   // var newDetails = document.createElement("details");
   // newDetails.setAttribute("class", "list-item");
@@ -167,7 +202,7 @@ function addList() {
   // document.getElementById('modal-nick').value = "";
   // document.getElementById('modal-text').value = "";
 
-  // location.reload(true);
+  location.reload(true);
 }
 
 function modal() {
