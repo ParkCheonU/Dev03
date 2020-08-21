@@ -1,0 +1,210 @@
+body, head {
+  margin: 0;
+  padding: 0;
+}
+
+.big-box {
+  border: 1px solid black;
+  width: 900px;
+  justify-content: center;
+  max-height: 718px;
+  overflow-y: scroll;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+}
+
+.list-box {
+  border: 1px solid black;
+  width: 800px;
+  margin-left: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#list {
+  min-height: 600px;
+}
+
+.list-item {
+  border: 1px solid black;
+  width: 700px;
+  margin: 20px 50px;
+}
+
+.list-summary {
+  margin: 20px 20px;
+  outline: none;
+}
+
+.list-contents {
+  margin: 20px 20px;
+}
+
+.list-img {
+  width: 500px;
+  height: auto;
+  margin: 20px 60px;
+}
+
+.list-text {
+  resize: none;
+  outline: none;
+  width: 640px;
+  padding: 3px 5px;
+  font-size: 15px;
+  overflow-y: hidden;
+  line-height: 20px;
+  margin-top: 7px;
+  border: 0;
+
+}
+
+#modal-back {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 107vh;
+  position: fixed;
+  top: 0px;
+  overflow: hidden;
+  display: none;
+}
+
+.modal-content {
+  width: 800px;
+  background-color: white;
+  position: relative;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -40%);
+  padding: 20px;
+}
+
+
+#modal-nick {
+  width: 600px;
+  height: 40px;
+  font-size: 25px;
+  padding-left: 10px;
+  outline: none;
+}
+
+.modal-button {
+  float: right;
+}
+
+.modal-header button {
+  width: 60px;
+  height: 40px;
+  font-size: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: #3BABFD;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+}
+
+#modal-text {
+  resize: none;
+  margin-top: 20px;
+  width: 780px;
+  height: 400px;
+  font-size: 20px;
+  padding: 10px;
+  outline: none;
+}
+
+.addicon {
+  position: absolute;
+  top: 650px;
+  left: 1100px;
+  background-color: #3BABFD;
+  border-radius: 45px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+.icon {
+  color: white;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+}
+
+.more {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 20px;
+  font-size: 20px;
+  padding: 5px 20px;
+  border: none;
+  color: white;
+  border-radius: 45px;
+  background-color: #3BABFD;
+  outline: none;
+  cursor: pointer;
+}
+
+.heart{
+	width: 20px;
+	height: 20px;
+  position: relative;
+  margin-left: 20px;
+  margin-bottom: -30px;
+	border-radius: 5px;
+	background: none;
+	cursor: pointer;
+	transition: background 0.5s ease;
+}
+.heart:hover{
+
+}
+.active.shape:before,.active.shape:after{
+	background: red !important;
+}
+.shape {
+    width: 90px;
+    height: 80px;
+    transition: background 0.5s ease;
+}
+.shape:before,
+.shape:after {
+	transition: background 0.5s ease;
+    position: absolute;
+    content: "";
+    left: 19px;
+    top: 10px;
+    width: 20px;
+    height: 30px;
+    background: dimgrey;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+.shape:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin :100% 100%;
+}
+
+.item {
+  width: 100px;
+}
+
+.number {
+  float: right;
+  margin-top: -40px;
+  font-size: 20px;
+  color: dimgrey;
+}
+
+.preview {
+  height: 200px;
+  width: auto;
+}
