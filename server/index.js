@@ -20,7 +20,8 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api", router);
- 
+app.use('/users', express.static('public/img'));
+
 app.use((err, req, res, next) => {
     res.status(404).json({
         message: err.message,
