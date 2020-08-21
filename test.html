@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="test.css">
+  </head>
+  <body onload="get();">
+    <div class="big-box" id="big-box">
+      <div class="list-box">
+        <div  id="list">
+
+        </div>
+        <div>
+          <button type="button" class="more" onclick="getData();">더보기</button>
+        </div>
+      </div>
+    </div>
+    <div class="addicon" onclick="modal()">
+      <div class="icon">+</div>
+    </div>
+    <div id="modal-back">
+      <div class="modal-content">
+        <div class="modal-header">
+          <input type="text" name="" value="" id="modal-nick" placeholder="닉네임을 입력해주세요.">
+          <div class="modal-button">
+            <button type="button" name="button" onclick="addList()">등록</button>
+            <button type="button" name="button"  onclick="noneDisplay()">취소</button>
+          </div>
+        </div>
+        <textarea id="modal-text" placeholder="내용을 입력해주세요."></textarea>
+        <input type="file" name="" value="" id="fileset" accept="image/*" onchange="setThumbnail(event);">
+        <div id="image_container"></div>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script type="text/javascript" src="test.js"></script>
+</html>
