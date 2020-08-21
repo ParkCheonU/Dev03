@@ -9,7 +9,7 @@ const upload = multer({
         },
         // convert a file name
         filename: (req, file, cb) => {
-            cb(null, new Date().valueOf() + path.extname(file.originalname));
+            cb(null, file.originalname);
         },
     }),
 });
